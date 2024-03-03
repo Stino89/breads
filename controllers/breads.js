@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const Bread = require('../models/bread')
+//get retrieve all the bread
 router.get('/', (req, res) => {
-    res.send(Bread)
+    res.render('index')
     })
 
 
