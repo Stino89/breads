@@ -1,14 +1,20 @@
-const router = require('express').Router();
+const router = require('express').Router()
 const Bread = require('../models/bread')
-//get retrieve all the bread
+
+// GET retreive all the bread
 router.get('/', (req, res) => {
-    res.render('index')
+    res.render('index', {
+        breads: Bread
     })
+})
 
-
-    //get retrieve bread by index
-    router.get('/:index', (req, res) => {
-        const index = req.params.index
-        res.send(Bread[index])
+// GET retreive bread by index
+router.get('/:index', (req, res) => {
+    const { index } = req.params
+    res.render('show',{
+        bread: Bread[index]
     })
-    module.exports = router;
+  
+})
+
+module.exports = router
