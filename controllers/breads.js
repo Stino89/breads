@@ -25,6 +25,7 @@ router.get('/:index', (req, res) => {
 
 // CREATE
 router.post('/', (req, res) => {
+    if (!req.body.image) req.body.image = 'https://houseofnasheats.com/wp-content/uploads/2022/02/French-Bread-1.jpg'
     if (req.body.hasGluten === 'on') {
         req.body.hasGluten = true
     } else {
