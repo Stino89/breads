@@ -2,7 +2,7 @@ const express = require('express')
 const methodOverride = require('method-override')
 const mongoose = require('mongoose')
 require('dotenv').config()
-const breadRoutes = require('./controllers/bread')
+const breadRoutes = require('./controllers/breads')
 
 
 const app = express()
@@ -22,6 +22,7 @@ app.use('/bread', breadRoutes)
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('DB connected'))
     .catch(err => console.error(err));
+    
 
 const PORT = process.env.PORT || 8080
 

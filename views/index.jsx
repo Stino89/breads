@@ -14,10 +14,10 @@ function Index({ breads }) {
         <h2>Index Page</h2>
         <ul>
         <div className="newButton">
-          <a href="/breads/new"><button>Add a new bread</button></a>
+          <a href="/bread/new"><button>Add a new bread</button></a>
         </div>
         <div className="backButton">
-          <a href="/breads"><button>Go back to the index</button></a>
+          <a href="/bread"><button>Go back to the index</button></a>
         </div>
             {display}
         </ul>
@@ -25,4 +25,4 @@ function Index({ breads }) {
     )
 }
 
-module.exports = index
+module.exports = Index
