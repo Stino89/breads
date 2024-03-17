@@ -1,17 +1,30 @@
-const { default: mongoose } = require("mongoose")
 
 const mongoose = require('mongoose')
+const breadSchem = new mongoose.Schema({
+    name: {
+      type: String,
+      required: true
+    },
+    hasGluten: {
+      type: Boolean
+    },
+    image: {
+      type: String,
+      default: 'https://houseofnasheats.com/wp-content/uploads/2022/02/French-Bread-1.jpg'
+    },
+    baker: {
+      type: String,
+      enum: ['Rachel', 'Monica', 'Joey', 'Chandler', 'Ross', 'Phoebe']
+    }
+  })
+breadSchema.methods.getBakedBy = function() {
+  return `${this.name} was baked by ${this.baker}`
+},breadSchema.methods.getBakedBy = function() {
+  return `${this.name} was baked by ${this.baker}`
+}
+breadSchema.methods.getBakedBy = function() {   
+    return `${this.name} was baked by ${this.baker}`
+    }
 
-const breadSchema = new mongoose.Schema({
-    name: {type: String, required: true},
-    image: {type: String, default: 'https://houseofnasheats.com/wp-content/uploads/2022/02/French-Bread-1.jpg'},
-    hasGluten: {type: Boolean, default: true}
-})
+module.exports = mongoose.model('Bread', breadSchema)
 
-const Bread = mongoose.model('Bread', breadSchema)
-
-module.exports = Bread
-// Path: controllers/breads.js
-const express = require('express')
-const router = express.Router()
-const Bread = require('../models/bread')
