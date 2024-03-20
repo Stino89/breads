@@ -2,6 +2,11 @@ const React = require('react')
 const Default = require('./layouts/default')
 
 function New({bakers}) {
+    const bakersSelect = bakers.map(baker => {
+        return (
+            <option key={baker.id} value={baker.id}>{baker.name}</option>
+        )
+    })
     return (
         <Default>
             <h2>Add a new bread</h2>

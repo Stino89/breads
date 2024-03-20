@@ -14,7 +14,7 @@ const breadSchem = new mongoose.Schema({
     },
     baker: {
       type: mongoose.Schema.Types.ObjectId,
-      enum: ['Rachel', 'Monica', 'Joey', 'Chandler', 'Ross', 'Phoebe']
+        ref: 'Baker'
     }
   })
 breadSchema.methods.getBakedBy = function() {

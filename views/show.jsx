@@ -8,11 +8,9 @@ function Show({ bread}) {
             <h2>Show Page</h2>
             <h3>{bread.name}</h3>
             <p> and it
-                {bread.hasGluten ? ' has ' : ' does not have '}
-                gluten.</p>
+                {bread.hasGluten ? <span> does </span> : <span> does not </span>}
+                have gluten.</p>
                 <p>{bread.getBakedBy()}</p>
-                <p>
-            </p>
             <img src={bread.image} alt={bread.name} />
             <li>
                 <a href='/bread'> Go Home</a>
