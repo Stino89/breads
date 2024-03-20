@@ -2,7 +2,7 @@ const router = require('express').Router()
 const Baker = require('../models/baker')
 router.get('/:id', async (req, res) => {
     const { id } = req.params
-    const baker = await Baker.findById(id)
+    const baker = await Baker.findById(id).populate('breads')
     res.render('bakerShow', {
         baker
     })

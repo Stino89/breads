@@ -7,54 +7,57 @@ const baker = require('../models/baker')
 router.get('/', async (req, res) => {
     try {
         const bread = await Bread.find()
+        const bakers = await Baker.find()
         res.render('index', {
-            bread
+            bread,
+            bakers
         })
-    } catch (error) {
-    const bread = await Bread.find()
-    res.render('index', {
+    }catch (error) {
+        console.log('error:', error)
+        res.json({ message: 'error getting bread' })
+    }
+    })
+
+// Render New Page
+router.get('/new', async (req, res) => {
+    const bakers = await Baker.find()
+    res.render('new', {
+        bakers
+    })
+})
+
+// static vs dynamic routes, dynamic first
+router.get('/new', (req, res) =>{
+    res.render('new')
+})
+
+// GET retreive bread by id
+router.get('/:id', async (req, res) => {
+    const { id } = req.params
+    const bread = await Bread.findById(id).populate('baker')
+    res.render('show', {
         bread
     })
-}})
-
-
+})
 router.get('/:id/edit', async (req, res) => {
     const { id } = req.params
     const bread = await Bread.findById(id)
+    const bakers = await Baker.find()
     res.render('edit', {
-        bread
+        bread,
+        bakers
     })
 })
-
-
-
-
-router.get('/:index/edit', (req, res) => {
-    const { index } = req.params
-    res.render('show',{
-        bread: Bread[index]
-    })
-  
-})
-router.get('/:index/edit', (req, res) => {
-    const { index } = req.params
-    res.render('edit', {
-        bread: Bread[index],
-        index
-    })
-})
-
-
 
 // CREATE
-router.post('/', (req, res) => {
-    if (!req.body.image) req.body.image = 'https://houseofnasheats.com/wp-content/uploads/2022/02/French-Bread-1.jpg'
-    if (req.body.hasGluten === 'on') {
+router.post('/', async (req, res) => {
+    if (!req.body.image) req.body.image = undefined
+    if (!req.body.image === 'on') {
         req.body.hasGluten = true
     } else {
         req.body.hasGluten = false
     }
-    Bread.push(req.body)
+    await Bread.create(req.body)
     res.redirect('/bread')
 })
 
@@ -101,67 +104,22 @@ router.get('/data/seed', async (req, res) => {
             hasGluten: true,
             image: 'https://images.unsplash.com/photo-1586444248902-2f64eddc13df?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80',
         }
-    ]})
-    
-    
-
-    seedData.forEach(bread => {
-        // const random = 
-        const randomId = bakerIds[Math.floor(Math.random() * bakerIds)]
-        console.log(randomId)
-        bread.baker = randomId
-    })
-   
-
-    await Bread.insertMany(seedData)
-    res.redirect('/bread')
-    const Bakers = await Baker.find()
-    const BakerIds = bakers.map(baker => baker._id)
-
-    seedData.forEach(bread => {
-        // const random = 
-        const randomId = bakerIds[Math.floor(Math.random() * bakerIds)]
-        console.log(randomId)
-        bread.baker = randomId
-    })
-    await Bread.deleteMany()
-    await Bread.insertMany(seedData)
-    res.redirect('/bread')
+    ]
     const bakers = await Baker.find()
-    const bakerIds = bakers.map(baker => baker._id)
+const bakerIds = bakers.map(baker => baker.id)
+seedData.forEach(bread => {
+    const random = Math.floor(Math.random() * bakerIds.length)
+    const randomId = bakerIds[random]
+    bread.baker = randomId
+})
+await Bread.deleteMany()
+await Bread.insertMany(seedData)
+res.redirect('/bread')
+})
 
-    seedData.forEach(bread => {
-        // const random = 
-        const randomId = bakerIds[Math.floor(Math.random() * bakerIds)]
-        console.log(randomId)
-        bread.baker = randomId
-    })
-    await Bread.deleteMany()
-    await Bread.insertMany(seedData)
-    res.redirect('/bread')
-    const akers = await Baker.find()
-    const akerIds = bakers.map(baker => baker._id)
-
-    seedData.forEach(bread => {
-        // const random = 
-        const randomId = bakerIds[Math.floor(Math.random() * bakerIds)]
-        console.log(randomId)
-        bread.baker = randomId
-    })
-    await Bread.deleteMany()
-    await Bread.insertMany(seedData)
-    res.redirect('/bread')
-    await Bread.deleteMany()
-    await bread.insertMany(seedData)
-    res.redirect('/bread')
-
-
-
-// GET retreive bread by inde
 module.exports = router
 
 
-// Path: models/bread.js
-// Compare this snippet from server.js:
-// const express = require('express')
-// const methodOverride = require('method-override')
+
+
+
