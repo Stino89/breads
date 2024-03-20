@@ -3,14 +3,14 @@ const methodOverride = require('method-override')
 const mongoose = require('mongoose')
 require('dotenv').config()
 const breadRoutes = require('./controllers/breads')
-const bakerRoutes = require('./controllers/backer')
+const bakerRoutes = require('./controllers/baker')
 
 
 const app = express()
 
-// middlewares
-app.use(methodOverride('_method'))
+// middlewaresrs
 app.use(express.urlencoded({extended: true}))
+app.use(methodOverride('_method'))
 app.use(express.static('public'))
 app.set('views', __dirname + '/views')
 app.set('view engine', 'jsx')
@@ -28,4 +28,5 @@ mongoose.connect(process.env.MONGO_URI)
 
 const PORT = process.env.PORT || 8080
 
-app.listen(PORT, console.log(`listening on port ${PORT}`))
+
+app.listen(PORT, console.log(`Server started on port ${PORT}`))

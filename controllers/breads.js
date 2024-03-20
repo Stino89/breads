@@ -1,7 +1,8 @@
 const router = require('express').Router()
 const Bread = require('../models/bread')
 const Baker = require('../models/baker')
-const { log } = require('console')
+const baker = require('../models/baker')
+
 // GET retreive all the bread by id 
 router.get('/', async (req, res) => {
     try {
@@ -110,7 +111,8 @@ router.get('/data/seed', async (req, res) => {
         console.log(randomId)
         bread.baker = randomId
     })
-    await Bread.deleteMany()
+   
+
     await Bread.insertMany(seedData)
     res.redirect('/bread')
     const Bakers = await Baker.find()
@@ -153,8 +155,12 @@ router.get('/data/seed', async (req, res) => {
     await bread.insertMany(seedData)
     res.redirect('/bread')
 
+
+
 // GET retreive bread by inde
 module.exports = router
+
+
 // Path: models/bread.js
 // Compare this snippet from server.js:
 // const express = require('express')
