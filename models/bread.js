@@ -1,6 +1,6 @@
 // Code to create a bread model
 const mongoose = require('mongoose')
-const breadSchem = new mongoose.Schema({
+const breadSchema = new mongoose.Schema({
     name: {
       type: String,
       required: true
