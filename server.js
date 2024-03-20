@@ -2,7 +2,7 @@ const express = require('express')
 const methodOverride = require('method-override')
 const mongoose = require('mongoose')
 require('dotenv').config()
-const breadRoutes = require('./controllers/breads')
+const breadRoutes = require('./controllers/bread')
 const bakerRoutes = require('./controllers/baker')
 
 

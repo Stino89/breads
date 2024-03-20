@@ -30,9 +30,9 @@ function New({bakers}) {
                     defaultChecked
                 />
                 <label htmlFor="baker">Baker</label>
-<select name="baker" id="baker">
-    {bakersSelect}
-</select>
+                <select name="baker" id="baker">
+                {bakersSelect}
+                </select>
                 <br />
                 <input type="submit" />
             </form>

@@ -16,6 +16,11 @@ const bakerSchema = new mongoose.Schema({
     toJSON: {
         virtuals: true}
     })
+    bakerSchema.virtual('breads', {
+        ref: 'Bread',
+        localField: '_id',
+        foreignField: 'baker'
+    })
 
 bakerSchema.post('findOneAndDelete', async function(){
     await Bread.deleteMany({ baker: this._condition._id })
