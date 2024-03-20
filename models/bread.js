@@ -13,18 +13,14 @@ const breadSchem = new mongoose.Schema({
       default: 'https://houseofnasheats.com/wp-content/uploads/2022/02/French-Bread-1.jpg'
     },
     baker: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
       enum: ['Rachel', 'Monica', 'Joey', 'Chandler', 'Ross', 'Phoebe']
     }
   })
 breadSchema.methods.getBakedBy = function() {
-  return `${this.name} was baked by ${this.baker}`
-},breadSchema.methods.getBakedBy = function() {
-  return `${this.name} was baked by ${this.baker}`
+  return `${this.name} was baked by ${this.baker.name} who has been here since ${this.baker.startDate.getFullYear()}.`
 }
-breadSchema.methods.getBakedBy = function() {   
-    return `${this.name} was baked by ${this.baker}`
-    }
+                      
 
 module.exports = mongoose.model('Bread', breadSchema)
 

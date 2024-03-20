@@ -1,12 +1,21 @@
 const router = require('express').Router()
 const Bread = require('../models/bread')
-
-// GET retreive all the bread
-router.get('/', (req, res) => {
+const Baker = require('../models/baker')
+const { log } = require('console')
+// GET retreive all the bread by id 
+router.get('/', async (req, res) => {
+    try {
+        const bread = await Bread.find()
+        res.render('index', {
+            bread
+        })
+    } catch (error) {
+    const bread = await Bread.find()
     res.render('index', {
-        breads: Bread
+        bread
     })
-})
+}})
+
 
 router.get('/:id/edit', async (req, res) => {
     const { id } = req.params
@@ -92,7 +101,56 @@ router.get('/data/seed', async (req, res) => {
             image: 'https://images.unsplash.com/photo-1586444248902-2f64eddc13df?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80',
         }
     ]})
+    
+    
+
+    seedData.forEach(bread => {
+        // const random = 
+        const randomId = bakerIds[Math.floor(Math.random() * bakerIds)]
+        console.log(randomId)
+        bread.baker = randomId
+    })
+    await Bread.deleteMany()
     await Bread.insertMany(seedData)
+    res.redirect('/bread')
+    const Bakers = await Baker.find()
+    const BakerIds = bakers.map(baker => baker._id)
+
+    seedData.forEach(bread => {
+        // const random = 
+        const randomId = bakerIds[Math.floor(Math.random() * bakerIds)]
+        console.log(randomId)
+        bread.baker = randomId
+    })
+    await Bread.deleteMany()
+    await Bread.insertMany(seedData)
+    res.redirect('/bread')
+    const bakers = await Baker.find()
+    const bakerIds = bakers.map(baker => baker._id)
+
+    seedData.forEach(bread => {
+        // const random = 
+        const randomId = bakerIds[Math.floor(Math.random() * bakerIds)]
+        console.log(randomId)
+        bread.baker = randomId
+    })
+    await Bread.deleteMany()
+    await Bread.insertMany(seedData)
+    res.redirect('/bread')
+    const akers = await Baker.find()
+    const akerIds = bakers.map(baker => baker._id)
+
+    seedData.forEach(bread => {
+        // const random = 
+        const randomId = bakerIds[Math.floor(Math.random() * bakerIds)]
+        console.log(randomId)
+        bread.baker = randomId
+    })
+    await Bread.deleteMany()
+    await Bread.insertMany(seedData)
+    res.redirect('/bread')
+    await Bread.deleteMany()
+    await bread.insertMany(seedData)
     res.redirect('/bread')
 
 // GET retreive bread by inde

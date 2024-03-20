@@ -7,8 +7,11 @@ function Show({ bread}) {
         <Default>
             <h2>Show Page</h2>
             <h3>{bread.name}</h3>
-            <p>
-                {bread.name} is a type of {bread.type} bread.
+            <p> and it
+                {bread.hasGluten ? ' has ' : ' does not have '}
+                gluten.</p>
+                <p>{bread.getBakedBy()}</p>
+                <p>
             </p>
             <img src={bread.image} alt={bread.name} />
             <li>
