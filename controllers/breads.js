@@ -1,7 +1,6 @@
 const router = require('express').Router()
 const Bread = require('../models/bread')
 const Baker = require('../models/baker')
-const baker = require('../models/baker')
 
 // GET retreive all the bread by id 
 router.get('/', async (req, res) => {
