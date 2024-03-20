@@ -4,8 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "npx nodemon server.js -e js,jsx",
-    "start": "node server.js"
+    "dev": "npx nodemon server.js -e js,jsx"
   },
   "keywords": [],
   "author": "",
@@ -16,8 +15,5 @@
     "express-react-views": "^0.11.0",
     "method-override": "^3.0.0",
     "mongoose": "^8.2.1"
-  },
-  "devDependencies": {
-    "@types/node": "^20.11.27"
   }
 }
